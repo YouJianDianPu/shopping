@@ -1,7 +1,7 @@
 {
   "name": "shopping",
   "version": "1.0.0",
-  "description": "a nodejs,express demo",
+  "description": "this is a shopping app",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,14 +11,22 @@
     "url": "git+https://github.com/YouJianDianPu/shopping.git"
   },
   "keywords": [
-    "nodejs",
     "express",
-    "shopping"
+    "shopping",
+    "nodejs"
   ],
   "author": "youjiandianpu",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/YouJianDianPu/shopping/issues"
   },
-  "homepage": "https://github.com/YouJianDianPu/shopping#readme"
+  "homepage": "https://github.com/YouJianDianPu/shopping#readme",
+  "dependencies": {
+    "express": "^4.16.2"
+  },
+  "devDependencies": {
+    "body-parser": "^1.18.2",
+    "ejs": "^2.5.7",
+    "serve-favicon": "^2.4.5"
+  }
 }
