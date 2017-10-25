@@ -21,11 +21,14 @@ app.config(["$provide", "$compileProvider", "$controllerProvider", "$filterProvi
 		 				'/templates/register/registerController.js',
 		 				'/templates/register/register.css'
 		 			]
-<<<<<<< HEAD
-		 		}
-=======
 		 		},
->>>>>>> f23bc71e061f094826a17006194afc22e45b0352
+		 		{
+		 			name: 'login',
+		 			files: [
+		 				'/templates/login/loginController.js',
+		 				'/templates/login/login.css'
+		 			]
+		 		}
 	 		]
  		});
 	}]);

@@ -3,28 +3,20 @@
 // 全局变量,获取当前模块文件所在的位置
 global.__basename=__dirname;
 
-<<<<<<< HEAD
 global.config = require(__basename + '/config/config.js');
-=======
-global.config=require(__basename + '/config/config.js');
->>>>>>> f23bc71e061f094826a17006194afc22e45b0352
+
 
 //引入模块
 const express=require('express');
 
 const ejs=require('ejs');
 
-<<<<<<< HEAD
+
 const favicon = require('serve-favicon');
 
 //处理POST请求请求体的数据
-const bodyparser = require('body-parser');
-=======
-const favicon=require('serve-favicon');
+const bodyParser = require('body-parser');
 
-//专门处理post请求方式
-const bodyParser=require('body-parser');
->>>>>>> f23bc71e061f094826a17006194afc22e45b0352
 
 const routes=require(__basename+'/routes/routes.js');
 
@@ -32,18 +24,12 @@ const routes=require(__basename+'/routes/routes.js');
 const app=express();
 
 //请求.ico文件
-<<<<<<< HEAD
-app.use(favicon(__basename + '/web/public/images/icons/img_79.ico'));
 
-let port = process.env.PORT || config.server.port;
-=======
-//
-app.use(favicon(__basename+ '/web/public/images/icons/img_79.ico'));
+app.use(favicon(__basename + '/web/public/images/icons/img_79.ico'));
 
 
 let port =process.env.PORT || config.server.port;//在服务器上是用80端口，否则使用本地开发地址
 
->>>>>>> f23bc71e061f094826a17006194afc22e45b0352
 
 //设置静态资源路径
 //
@@ -59,14 +45,9 @@ app.set('view engine','html');
 //ejs.__express回调函数
 app.engine('.html',ejs.__express);
 
-<<<<<<< HEAD
-//json划post请求
-app.use(bodyparser.json());
-=======
 //json化post请求数据
 app.use(bodyParser.json());
 
->>>>>>> f23bc71e061f094826a17006194afc22e45b0352
 
 //加载所有路由
 routes(app);
@@ -87,16 +68,10 @@ app.use((err,req,res)=>{
 });
 
 
-<<<<<<< HEAD
 //设置监听窗口, (主机: config.server.host), (端口:config.server.port)
 app.listen(config.server.port,()=>{
 	//添加一个回调函数，可加可不加
 	console.log(`服务器运行于${config.server.host}：${config.server.port}端口`)
-=======
-//设置监听窗口
-app.listen(port,()=>{
-	//添加一个回调函数，可加可不加
-	console.log(`服务器运行于${config.server.host}:${port}`)
->>>>>>> f23bc71e061f094826a17006194afc22e45b0352
+
 
 });
