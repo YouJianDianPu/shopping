@@ -3,11 +3,19 @@ angular.module('app')
 		var api = {
 
 			fetchPost:function(url,data){
-			return $http({
+				return $http({
 					url:url,
 					method:'POST',
-					data:data,
+					data:data
 
+				});
+			},
+
+			fetchGet: function(url,params){
+				return $http({
+					url:url,
+					method:'GET',
+					params:params
 				});
 			}
 

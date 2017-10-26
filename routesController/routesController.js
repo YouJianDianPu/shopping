@@ -9,7 +9,7 @@ const utils = require(__basename + '/lib/utils/utils.js');
 class RoutesController{
 	constructor(){}
 
-	homeController(req,res){
+	rootController(req,res){
 		res.render('index');
 	}
 	
@@ -45,6 +45,33 @@ class RoutesController{
 
 			})
 
+	}
+
+	loginController(req, res){
+		utils.addCrypto(req.body, 'pwd');
+		var loginsql = SQL.findOneForLogin(req.body);
+		service.query(loginsql)
+			.then((result) => {
+				if(Array.isArray(result) && result.length === 1){
+					res.send(common.login.success);
+				}else{
+					res.send(common.login.warning);
+				}
+			})
+			.catch((err) => {
+				console.log(common.login.error);
+			})
+	}
+
+	homeController(req, res){
+		let homesql = SQL.findALLForHome();
+		service.query(homesql)
+			.then(function(result){
+				res.send(result);
+			})
+			.catch(function(err){
+				res.json({msg: '查询失败'});
+			})
 	}
 }
 

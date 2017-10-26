@@ -1,7 +1,7 @@
 angular.module('app')
 .config(['$stateProvider','$urlRouterProvider','$locationProvider',function($stateProvider,$urlRouterProvider,$locationProvider){
 	
-	$urlRouterProvider.otherwise('/login');
+	$urlRouterProvider.otherwise('/main/home');
 
 	$stateProvider
 		.state('main',{
@@ -14,12 +14,18 @@ angular.module('app')
 		})
 		
 		.state('main.home',{
-			url:'/home',
-			templateUrl:'/templates/home/home.html'
+			url:'/main/home',
+			templateUrl:'/templates/home/home.html',
+			controller: 'homeController',
+			resolve: {
+				des: ['$ocLazyLoad', function ($ocLazyLoad) {
+					return $ocLazyLoad.load('main.home');
+				}]
+			}
 		})
 
 		.state('main.find',{
-			url:'/find',
+			url:'/main/find',
 			templateUrl:'/templates/find/find.html'
 		})
 
@@ -43,6 +49,18 @@ angular.module('app')
 			resolve: {
 				des: ['$ocLazyLoad', function ($ocLazyLoad) {
 					return $ocLazyLoad.load('login');
+				}]
+			}
+		})
+
+		.state('details',{
+			url:'/details',
+			templateUrl:'/templates/details/details.html',
+			cache: false,
+			controller:'detailsController',
+			resolve: {
+				des: ['$ocLazyLoad', function ($ocLazyLoad) {
+					return $ocLazyLoad.load('details');
 				}]
 			}
 		})

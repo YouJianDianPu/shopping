@@ -1,0 +1,23 @@
+.home{
+	background-color: #efefef;
+}
+.home .pro-bg{
+	border: 1px solid #fff;
+}
+.home .pro-info{
+	overflow: hidden;
+}
+.home .pro-info>.fl{
+	float: left;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+.home .pro-info>.fr{
+	float: right;
+}
+.home .desc{
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}

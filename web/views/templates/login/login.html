@@ -6,21 +6,21 @@
 	<ion-list>
 		<ion-item class="item item-input item-floating-label">
 			<span class="input-label"><i class="icon ion-email assertive"></i></span>
-    		<input type="text" placeholder="邮箱">
+    		<input type="text" placeholder="邮箱" ng-model="data.email">
 		</ion-item>
 
 		<ion-item class="item item-input item-floating-label">
 			<span class="input-label"><i class="icon ion-locked assertive"></i></span>
-    		<input type="password" placeholder="密码">
+    		<input type="password" placeholder="密码" ng-model="data.pwd">
 		</ion-item>
 	</ion-list>
 
 	<div class="padding-horizontal padding-top">
-		<button class="button button-assertive button-block">登录</button>
+		<button ng-click="login();" class="button button-assertive button-block">登录</button>
 	</div>
 	<div class="row">
 		<div class="col">
-			<div class="button button-outline button-assertive button-block">注册</div>
+			<div ui-sref="register" class="button button-outline button-assertive button-block">注册</div>
 		</div>
 		<div class="col">
 			<div class="button button-outline button-assertive button-block">忘记密码</div>
