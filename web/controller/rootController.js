@@ -4,4 +4,8 @@ angular.module('app')
 			// console.log(params);
 			$state.go(stateName,params);
 		}
+
+		$rootScope.goBack = function(){
+			history.back(-1);
+		}
 	}])

@@ -1,0 +1,36 @@
+.details{
+	background-color: #efefef;
+}
+.details .name-price{
+	overflow: hidden;
+	border-top: 1px solid #ccc;
+}
+.details .name-price>.fl{
+	float: left;
+	max-width: 150px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.details .name-price>.fr{
+	float: right;
+	color: #e12345;
+	font-size: 20px;
+}
+.details .count-right{
+	float: right;
+	font-size: 14px;
+}
+.details .count{
+	float: right;
+	padding: 0;
+	min-width: 60px;
+	max-width: 100px;
+	border: 1px solid #ef473a;
+	text-align: center;
+	height: 20px;
+	font-size: 14px;
+}
+.details .fRight{
+	float: right;
+}

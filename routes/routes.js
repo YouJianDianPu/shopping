@@ -16,4 +16,10 @@ module.exports=function(app){
 
 	app.get('/main/home', RoutesController.homeController);
 
+	app.get('/details/:id', RoutesController.detailsController);
+
+	app.get('/comment/:id', RoutesController.commentController);
+	
+	app.get('/main/shopcart/:email', RoutesController.shopcartController);
+
 }
