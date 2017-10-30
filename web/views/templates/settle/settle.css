@@ -1,0 +1,18 @@
+.settle .pro-info{
+	overflow: hidden;
+	border-top: 1px solid #ccc;
+}
+.settle .fl{
+	float: left;
+}
+.settle .fr{
+	float: right;
+}
+.settle .address{
+	overflow: hidden;
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+}
+.settle .addr{
+	clear: both;
+}

@@ -88,7 +88,7 @@ class RoutesController{
 			})
 	}
 
-	shopcartController(req, res){
+	commentController(req, res){
 		//console.log('req.query ==> ', req.query);
 		let commentsql = SQL.findOneForComment(req.query);
 		service.query(commentsql)
@@ -105,16 +105,42 @@ class RoutesController{
 
 	shopcartController(req, res){
 		//console.log('req.query ==> ', req.query);
-		let shopcartsql = SQL.findOneForShopcart(req.query);
+		let shopcartsql = SQL.findAllForShopcart(req.query);
 		service.query(shopcartsql)
 			.then((result) => {
-				// result.forEach((v) => {
-				// 	v.shopcartTime = moment(v.shopcartTime).format('YYYY-MM-DD HH:mm:ss');
-				// })
+				result.forEach((v) => {
+					v.cartTime = moment(v.cartTime).format('YYYY-MM-DD HH:mm:ss');
+				})
 				res.send(result);
 			})
 			.catch((err) => {
 				res.json({'msg': '查询失败'});
+			})
+	}
+
+	addShopcartController(req, res){
+		console.log(req.query);
+		let addshopcartsql = SQL.insertOneForShopcart(req.query);
+		service.query(addshopcartsql)
+			.then((result) => {
+				console.log('result ==> ',result);
+				res.json({code: 200});
+			})
+			.catch((err) => {
+				console.log('err 232332==> ', err);
+				res.send(err);
+			})
+	}
+
+	settleController(req, res){
+		console.log('req.query ==> ', req.query);
+		let settlesql = SQL.findAllForSettle(req.query.id);
+		service.query(settlesql)
+			.then((result) => {
+				res.send(result);
+			})
+			.catch((err) => {
+				res.send(err);
 			})
 	}
 }

@@ -88,6 +88,18 @@ angular.module('app')
 				}]
 			}
 		})
+
+		.state('settle',{
+			url:'/settle/:id',
+			templateUrl:'/templates/settle/settle.html',
+			cache: false,
+			controller:'settleController',
+			resolve: {
+				des: ['$ocLazyLoad', function ($ocLazyLoad) {
+					return $ocLazyLoad.load('settle');
+				}]
+			}
+		})
 		
 		
 

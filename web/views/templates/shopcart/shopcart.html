@@ -4,10 +4,15 @@
 
 <ion-content class="shopcart">
 	<ion-list>
-		<ion-item class="item-thumbnail-left">
-			<img src="/images/images07_Sheet_@3x.png" />
-			<h2>sdsdsdssds</h2>
-			<p>sdsdsdsdsddddddddd</p>
+		<ion-item class="item-thumbnail-left" ng-repeat="item in data" ng-click="goPage('settle', {id: item.cartid})">
+			<img ng-src="{{item.imgUrl}}" />
+			<h2>{{item.pname}}</h2>
+			<p>
+				<span class="padding-right">单价: {{item.price}}</span>
+				<span class="padding-right">数量: {{item.count}}</span>
+				<span class="assertive">总金额: {{item.price * item.count}}</span>
+			</p>
+			<p>{{item.cartTime}}</p>
 		</ion-item>
 	</ion-list>
 </ion-content>

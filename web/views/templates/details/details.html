@@ -17,7 +17,7 @@
 				<span class="subdued">月销售{{data[0].monthCount}}</span>
 				<span class="subdued padding-left">库存{{data[0].surplusCount}}</span>
 				<span class="count-right">
-					<span class="padding-right">数量:</span><input ng-model="value" class="count" type="text" name="" />
+					<span class="padding-right">数量:</span><input ng-model="pdetails.count" class="count" type="text" name="" />
 				</span>
 				
 			</p>
@@ -28,9 +28,9 @@
 			</p>
 			<div ng-click="goPage('comment', {id: data[0].did});" class="button button-assertive button-outline button-small">查看全部评论>>></div>
 			<div class="fRight assertive">
-				<span class="padding-right">总金额:</span><span>￥{{value * data[0].price}}</span>
+				<span class="padding-right">总金额:</span><span>￥{{pdetails.count * data[0].price}}</span>
 			</div>
-			<button ng-click="addShopCart" class="button button-assertive button-block">加入购物车</button>
+			<button ng-click="addShopCart();" class="button button-assertive button-block">加入购物车</button>
 		</ion-item>
 	</ion-list>
 </ion-content>

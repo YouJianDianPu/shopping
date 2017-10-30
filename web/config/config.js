@@ -56,6 +56,13 @@ app.config(["$provide", "$compileProvider", "$controllerProvider", "$filterProvi
 		 				'/templates/comment/commentController.js',
 		 				'/templates/comment/comment.css'
 		 			]
+		 		},
+		 		{
+		 			name: 'settle',
+		 			files: [
+		 				'/templates/settle/settleController.js',
+		 				'/templates/settle/settle.css'
+		 			]
 		 		}
 	 		]
  		});
