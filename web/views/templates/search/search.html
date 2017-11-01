@@ -1,12 +1,13 @@
-
-<ion-header-bar class="item-input-inset assertive-bg">
-  <label class="item-input-wrapper light-bg">
-    <i class="icon ion-ios-search placeholder-icon"></i>
-    <input type="text" placeholder="搜索..." ng-focus="getFocus('search');">
-  </label>
+<ion-header-bar class="bar-assertive item-input-inset assertive-bg">
+	<button ng-click="goBack();" class="button button-clear icon ion-ios-arrow-left"></button>
+	<label class="item-input-wrapper light-bg">
+   		<i class="icon ion-ios-search placeholder-icon"></i>
+		<input ng-model="searchWord" type="text" placeholder="搜索..." ng-focus="getFocus('search');">
+    </label>
+    <button ng-click="search();" class="button button-clear">搜索</button>
 </ion-header-bar>
 
-<ion-content class="home">
+<ion-content class="search">
 	<div class="row row-wrap">
 		<div class="col col-50" ng-repeat="item in data">
 			<div class="pro-bg" ng-click="goPage('details', {id: item.pid});">

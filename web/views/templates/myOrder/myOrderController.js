@@ -3,6 +3,9 @@ angular.module('app')
 		
 		$scope.isNotHas = true;
 		$scope.isDisc = false;
+		$scope.comments = {
+			comment: ''
+		};
 
 		utils.tips.initPopover($scope);
 
@@ -20,8 +23,19 @@ angular.module('app')
 				console.log(err);
 				utils.tips.hideLoadTips();
 			})
-		$scope.discussion = function(e){
-			utils.tips.openPopover($scope, e);
+		$scope.discussion = function(item, index){
+			utils.tips.openPopover($scope);
+			$scope.comments.comment = '';
+			$scope.datas = {
+				index: index,
+				cartid: item.cartid,
+				pname: item.pname,
+				content: '',
+				email: $rootScope.user.email,
+				nickname: $rootScope.user.nickname,
+				commentTime: new Date().format("yyyy-MM-dd hh:mm:ss"),
+				did: item.pid
+			}
 		}
 
 		//用于popover.html
@@ -30,6 +44,28 @@ angular.module('app')
 		}
 
 		$scope.confirmDisc = function(){
+			utils.tips.showLoadTips();
+			$scope.datas.content = $scope.comments.comment;
+			API.fetchPost('/updateComment/' + $scope.datas.did, $scope.datas)
+				.then(function(data){
+					console.log(data);
+					API.fetchPost('/updateShopcartComment/' + $scope.datas.cartid, {cartid: $scope.datas.cartid, email: $rootScope.user.email})
+						.then(function(d){
+							utils.tips.hideLoadTips();
+							utils.tips.closePopover($scope);
+							// utils.tips.showTips(d.data.msg, $scope);
+							$scope.data[$scope.datas.index].commentStatus = 1;
+						})
+						.catch(function(e){
+							console.log(e);
+						})
+
+				})
+				.catch(function(err){
+					console.log(err);
+					utils.tips.hideLoadTips();
+				})
+				
 			utils.tips.closePopover($scope);
 		}
 	}])

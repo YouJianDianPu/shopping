@@ -1,7 +1,7 @@
 angular.module('app')
 .config(['$stateProvider','$urlRouterProvider','$locationProvider',function($stateProvider,$urlRouterProvider,$locationProvider){
 	
-	$urlRouterProvider.otherwise('/main/home');
+	$urlRouterProvider.otherwise('/login');
 
 	$stateProvider
 		.state('main',{
@@ -121,6 +121,18 @@ angular.module('app')
 			resolve: {
 				des: ['$ocLazyLoad', function ($ocLazyLoad) {
 					return $ocLazyLoad.load('myOrder');
+				}]
+			}
+		})
+
+		.state('search',{
+			url:'/search/:id',
+			templateUrl:'/templates/search/search.html',
+			cache: false,
+			controller:'searchController',
+			resolve: {
+				des: ['$ocLazyLoad', function ($ocLazyLoad) {
+					return $ocLazyLoad.load('search');
 				}]
 			}
 		})

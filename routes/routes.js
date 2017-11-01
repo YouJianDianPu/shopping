@@ -31,4 +31,11 @@ module.exports=function(app){
 	app.get('/my', RoutesController.myController);
 
 	app.get('/myOrder', RoutesController.myOrderController);
+
+	app.post('/updateComment/:id', RoutesController.updateCommentController);
+
+	app.post('/updateShopcartComment/:id', RoutesController.updateShopcartCommentController);
+
+	app.get('/search/:id', RoutesController.searchController);
+
 }

@@ -15,8 +15,8 @@
 			</p>
 			<div class="disc">
 				<span style="font-size: 12px;">{{item.buyTime}}</span>
-				<button ng-if="!isDisc" ng-click="discussion();" class="btn button button-outline button-small button-assertive">立即评价</button>
-				<button ng-if="isDisc" class="btn button button-outline button-small button-assertive">已评价</button>
+				<button ng-if="!(!!item.commentStatus)" ng-click="discussion(item, $index);" class="btn button button-outline button-small button-assertive">立即评价</button>
+				<button ng-if="!!item.commentStatus" class="btn button button-outline button-small button-assertive">已评价</button>
 			</div>
 		</ion-item>
 	</ion-list>

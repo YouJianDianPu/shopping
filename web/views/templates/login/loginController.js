@@ -17,10 +17,13 @@ angular.module('app')
 					console.log('login data ==> ', data);
 					utils.tips.hideLoadTips();
 					utils.tips.showTips(data.data.msg, $scope);
-					$timeout(function(){
-						$scope.tips.close();
-						$state.go('main.home');
-					}, 2000);
+					if(data.data.code === 200){
+						$timeout(function(){
+							$scope.tips.close();
+							$state.go('main.home');
+						}, 2000);
+					}
+					
 				})
 				.catch(function(err){
 					console.log(err);

@@ -1,0 +1,23 @@
+.search{
+	background-color: #efefef;
+}
+.search .pro-bg{
+	border: 1px solid #fff;
+}
+.search .pro-info{
+	overflow: hidden;
+}
+.search .pro-info>.fl{
+	float: left;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+.search .pro-info>.fr{
+	float: right;
+}
+.search .desc{
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}

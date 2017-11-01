@@ -180,6 +180,40 @@ class RoutesController{
 				res.send(err);
 			})
 	}
+
+	updateCommentController(req, res){
+		let updateCommentsql = SQL.insertOneForComment(req.body);
+		console.log(updateCommentsql);
+		service.query(updateCommentsql)
+			.then((result) => {
+				res.json({"msg": "评论成功"});
+			})
+			.catch((err) => {
+				res.send(err);
+			})
+	}
+
+	updateShopcartCommentController (req, res) {
+		let shopcartsql = SQL.updateOneForShopcartComment(req.body);
+		service.query(shopcartsql)
+			.then((result) => {
+				res.json({"msg": "评论成功"});
+			})
+			.catch((err) => {
+				res.send(err);
+			})
+	}
+
+	searchController(req, res){
+		let searchsql = SQL.searchAllForWord(req.query);
+		service.query(searchsql)
+			.then((result) => {
+				res.send(result);
+			})
+			.catch((err) => {
+				res.send(err);
+			})
+	}
 }
 
 module.exports=new RoutesController();
