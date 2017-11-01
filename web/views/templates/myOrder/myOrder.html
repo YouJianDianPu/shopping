@@ -1,0 +1,23 @@
+<ion-header-bar class="bar-assertive">
+	<button ng-click="goBack();" class="button button-clear icon ion-ios-arrow-left"></button>
+	<span class="title">我的订单</span>
+</ion-header-bar>
+
+<ion-content class="myOrder">
+	<div ng-if="isNotHas" class="text-center padding-top assertive">神马都没有...</div>
+	<ion-list>
+		<ion-item class="item-thumbnail-left" ng-repeat="item in data">
+			<img class="full-image" ng-src="{{item.imgUrl}}" />
+			<h2>商品名称{{item.pname}}</h2>
+			<p class="padding-top">
+				<span class="padding-right">商品价格{{item.price}}</span>
+				<span class="padding-left">商品数量{{item.count}}</span>
+			</p>
+			<div class="disc">
+				<span style="font-size: 12px;">{{item.buyTime}}</span>
+				<button ng-if="!isDisc" ng-click="discussion();" class="btn button button-outline button-small button-assertive">立即评价</button>
+				<button ng-if="isDisc" class="btn button button-outline button-small button-assertive">已评价</button>
+			</div>
+		</ion-item>
+	</ion-list>
+</ion-content>

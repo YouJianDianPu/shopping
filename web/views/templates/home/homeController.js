@@ -3,7 +3,7 @@ angular.module('app')
 		utils.tips.showLoadTips();
 		API.fetchGet('/main/home')
 			.then(function(data){
-				console.log(data);
+				//console.log(data);
 				$scope.data = data.data;
 				utils.tips.hideLoadTips();
 			})

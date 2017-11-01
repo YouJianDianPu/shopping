@@ -1,0 +1,10 @@
+.myOrder{
+	background-color: #efefef;
+}
+.myOrder .disc{
+	line-height: 31px;
+	overflow: hidden;
+}
+.myOrder .btn{
+	float: right;
+}

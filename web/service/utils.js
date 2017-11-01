@@ -1,5 +1,5 @@
 angular.module('app')
-	.factory('utils',['$ionicPopup','$ionicLoading', function($ionicPopup, $ionicLoading){
+	.factory('utils',['$ionicPopup','$ionicLoading', '$ionicModal', function($ionicPopup, $ionicLoading, $ionicModal){
 		var u={
 			//提示信息
 			tips:{
@@ -31,6 +31,21 @@ angular.module('app')
 					
 				    $ionicLoading.hide();
 					
+				},
+
+				initPopover: function(scope){
+					$ionicModal.fromTemplateUrl('/templates/popover/popover.html', {animation: 'slide-in-up', scope: scope})
+						.then(function(popover){
+							scope.popover = popover;
+						});
+				},
+
+				openPopover: function(scope){
+					scope.popover.show();
+				},
+
+				closePopover: function(scope){
+					scope.popover.hide();
 				}
 				  
 			},	

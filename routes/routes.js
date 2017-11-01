@@ -26,4 +26,9 @@ module.exports=function(app){
 
 	app.get('/settle/:id', RoutesController.settleController);
 
+	app.post('/settle/:id', RoutesController.postSettleController);
+
+	app.get('/my', RoutesController.myController);
+
+	app.get('/myOrder', RoutesController.myOrderController);
 }

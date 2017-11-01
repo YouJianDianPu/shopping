@@ -143,6 +143,43 @@ class RoutesController{
 				res.send(err);
 			})
 	}
+
+	postSettleController(req, res){
+		console.log('req.body ==> ', req.body);
+		let settlesql = SQL.updateOneForShopcart(req.body);
+		service.query(settlesql)
+			.then((result) => {
+				res.json({msg: '结算成功!'});
+			})
+			.catch((err) => {
+				res.send(err);
+			})
+	}
+
+	myController(req, res){
+		let mysql = SQL.findAllForMyOrderCount(req.query);
+		service.query(mysql)
+			.then((result) => {
+				res.send(result);
+			})
+			.catch((err) => {
+				res.send(err);
+			})
+	}
+
+	myOrderController(req, res){
+		let myOrdersql = SQL.findAllForMyOrder(req.query);
+		service.query(myOrdersql)
+			.then((result) => {
+				result.forEach((v) => {
+					v.buyTime = moment(v.buyTime).format('YYYY-MM-DD HH:mm:ss');
+				})
+				res.send(result);
+			})
+			.catch((err) => {
+				res.send(err);
+			})
+	}
 }
 
 module.exports=new RoutesController();
