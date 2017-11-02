@@ -9,7 +9,6 @@ angular.module('app')
 			utils.tips.showLoadTips();
 			API.fetchGet('/search/' + $scope.searchWord, {word: $scope.searchWord})
 				.then(function(data){
-					console.log(data);
 					$scope.data = data.data;
 					if($scope.data.length === 0){
 						$scope.isHas = true;

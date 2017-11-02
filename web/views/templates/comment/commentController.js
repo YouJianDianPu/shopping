@@ -3,7 +3,6 @@ angular.module('app')
 		utils.tips.showLoadTips();
 		API.fetchGet('/comment/' + $stateParams.id, $stateParams)
 			.then(function(data){
-				console.log('data ==> ', data.data);
 				$scope.data = data.data;
 				utils.tips.hideLoadTips();
 			})

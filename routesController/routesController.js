@@ -55,7 +55,10 @@ class RoutesController{
 		service.query(loginsql)
 			.then((result) => {
 				if(Array.isArray(result) && result.length === 1){
-					res.send(common.login.success);
+					for(var k in common.login.success){
+						result[0][k] = common.login.success[k];
+					}
+					res.send(result);
 				}else{
 					res.send(common.login.warning);
 				}
@@ -119,21 +122,18 @@ class RoutesController{
 	}
 
 	addShopcartController(req, res){
-		console.log(req.query);
 		let addshopcartsql = SQL.insertOneForShopcart(req.query);
 		service.query(addshopcartsql)
 			.then((result) => {
-				console.log('result ==> ',result);
 				res.json({code: 200});
 			})
 			.catch((err) => {
-				console.log('err 232332==> ', err);
+				console.log('err => ', err);
 				res.send(err);
 			})
 	}
 
 	settleController(req, res){
-		console.log('req.query ==> ', req.query);
 		let settlesql = SQL.findAllForSettle(req.query.id);
 		service.query(settlesql)
 			.then((result) => {
@@ -145,7 +145,6 @@ class RoutesController{
 	}
 
 	postSettleController(req, res){
-		console.log('req.body ==> ', req.body);
 		let settlesql = SQL.updateOneForShopcart(req.body);
 		service.query(settlesql)
 			.then((result) => {
@@ -183,7 +182,6 @@ class RoutesController{
 
 	updateCommentController(req, res){
 		let updateCommentsql = SQL.insertOneForComment(req.body);
-		console.log(updateCommentsql);
 		service.query(updateCommentsql)
 			.then((result) => {
 				res.json({"msg": "评论成功"});
@@ -209,6 +207,46 @@ class RoutesController{
 		service.query(searchsql)
 			.then((result) => {
 				res.send(result);
+			})
+			.catch((err) => {
+				res.send(err);
+			})
+	}
+
+	modifypwdController(req, res){
+		let modifypwdsql = SQL.findOneForModifypwd(req.query);
+		service.query(modifypwdsql)
+			.then((result) => {
+				if(result.length === 0){
+					res.json({msg: '用户不存在', code: 0});
+				}else{
+					//随机生成验证码
+					let time = new Date().getTime().toString();
+					let randomCode = time.substr(time.length - 6, 6);
+					let mailOptions = {
+						from: 'hwf969722998@126.com',
+						to: req.query.email,
+						subject: '修改密码',   //主题
+						text: '验证码',
+						html: '<b>您的验证码是: ' + randomCode + '</b>'
+					};
+
+					utils.sendMail(mailOptions, function(){
+						res.json({msg: '获取验证码成功, 请查看邮件', code: 1, validCode: randomCode});
+					})
+				}		
+			})
+			.catch((err) => {
+				res.json({msg: '获取验证码失败'});
+			})
+	}
+
+	modifynewpwdController(req, res){
+		utils.addCrypto(req.body, 'pwd');
+		var modifynewpwdsql = SQL.findOneForModifynewpwd(req.body);
+		service.query(modifynewpwdsql)
+			.then((result) => {
+				res.json({msg: '密码修改成功'});
 			})
 			.catch((err) => {
 				res.send(err);

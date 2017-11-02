@@ -38,4 +38,8 @@ module.exports=function(app){
 
 	app.get('/search/:id', RoutesController.searchController);
 
+	app.get('/modifypwd', RoutesController.modifypwdController);
+
+	app.post('/modifypwd', RoutesController.modifynewpwdController);
+
 }

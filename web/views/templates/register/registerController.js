@@ -16,7 +16,6 @@ angular.module('app')
 			API.fetchPost('/register',$scope.data)
 			//请求王城在执行then 函数
 				.then(function(data){
-					console.log(data);
 					utils.tips.hideLoadTips();
 					utils.tips.showTips(data.data.msg, $scope);
 					$timeout(function(){

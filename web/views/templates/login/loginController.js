@@ -1,5 +1,5 @@
 angular.module('app')
-	.controller('loginController', ['$scope', '$timeout', '$state', 'utils', 'API', function($scope, $timeout, $state, utils, API){
+	.controller('loginController', ['$rootScope', '$scope', '$timeout', '$state', 'utils', 'API', function($rootScope, $scope, $timeout, $state, utils, API){
 		$scope.data = {
 			email: '',
 			pwd: ''
@@ -14,10 +14,13 @@ angular.module('app')
 
 			API.fetchPost('/login', $scope.data)
 				.then(function(data){
-					console.log('login data ==> ', data);
+					// console.log('login data ==> ', data);
 					utils.tips.hideLoadTips();
-					utils.tips.showTips(data.data.msg, $scope);
-					if(data.data.code === 200){
+					showTips(data.data[0].msg);
+					if(data.data[0].code === 200){
+						$rootScope.user.uid = data.data[0].uid;
+						$rootScope.user.email = data.data[0].email;
+						$rootScope.user.nickname = data.data[0].nickname;
 						$timeout(function(){
 							$scope.tips.close();
 							$state.go('main.home');

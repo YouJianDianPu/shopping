@@ -1,5 +1,5 @@
 angular.module('app')
-	.controller('detailsController', ['$rootScope', '$scope', '$stateParams', 'API', 'utils', function($rootScope, $scope, $stateParams, API, utils){
+	.controller('detailsController', ['$rootScope', '$scope', '$state', '$stateParams', '$timeout', 'API', 'utils', function($rootScope, $scope, $state, $stateParams, $timeout, API, utils){
 		//console.log('$stateParams ==> ', $stateParams);
 
 		$scope.count = 1;
@@ -9,7 +9,6 @@ angular.module('app')
 		utils.tips.showLoadTips();
 		API.fetchGet('/details/' + $stateParams.id, $stateParams)
 			.then(function(data){
-				console.log('data ==> ', data.data);
 				$scope.data = data.data;
 
 				$scope.pdetails = {
@@ -40,12 +39,16 @@ angular.module('app')
 			utils.tips.showLoadTips();
 			API.fetchPut('/shopCart/' + $stateParams.id, $scope.pdetails)
 				.then(function(data){
-					console.log('data ==> ', data);
-					utils.tips.showTips('add to cart!', $scope);
+					utils.tips.showTips('成功加入购物车', $scope);
+					//$rootScope.goPage('main.shopcart');
 					utils.tips.hideLoadTips();
+					$timeout(function(){
+						$scope.tips.close();
+						$state.go('main.shopcart');
+					}, 2000);
 				})
 				.catch(function(err){
-					console.log('err 123==> ', err);
+					console.log('err ==> ', err);
 					utils.tips.hideLoadTips();
 				})
 		}

@@ -6,7 +6,6 @@ angular.module('app')
 		utils.tips.showLoadTips();
 		API.fetchGet('/settle/' + $stateParams.id, {id: $stateParams.id})
 			.then(function(data){
-				console.log(data);
 				$scope.data = data.data;
 
 				$scope.data.forEach(function(v){
@@ -24,7 +23,6 @@ angular.module('app')
 			utils.tips.showLoadTips();
 			API.fetchPost('/settle/' + $stateParams.id, {id: $stateParams.id, email: $rootScope.user.email, buyTime: new Date().format("yyyy-MM-dd hh:mm:ss")})
 				.then(function(data){
-					console.log(data);
 					$state.go('main.shopcart');
 					utils.tips.hideLoadTips();
 				})

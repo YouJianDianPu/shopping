@@ -12,7 +12,6 @@ angular.module('app')
 		utils.tips.showLoadTips();
 		API.fetchGet('/myOrder', {email: $rootScope.user.email})
 			.then(function(data){
-				console.log(data);
 				$scope.data = data.data;
 				if($scope.data.length > 0){
 					$scope.isNotHas = false;
