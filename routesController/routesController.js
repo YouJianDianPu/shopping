@@ -60,11 +60,11 @@ class RoutesController{
 					}
 					res.send(result);
 				}else{
-					res.send(common.login.warning);
+					res.send([common.login.warning]);
 				}
 			})
 			.catch((err) => {
-				console.log(common.login.error);
+				console.log([common.login.error]);
 			})
 	}
 
@@ -251,6 +251,26 @@ class RoutesController{
 			.catch((err) => {
 				res.send(err);
 			})
+	}
+
+	sendSMSController(req, res){
+		let time = new Date().getTime().toString();
+		let code = time.substr(time.length - 4, 4);
+		let smsOptions = {
+			PhoneNumbers: req.body.PhoneNumbers,
+			SignName: '有间店铺',
+			TemplateCode: 'SMS_108965010',
+			TemplateParam: '{"code":"' + code + '"}'
+		};
+
+		utils.sendSMS(smsOptions, function(s){
+			let {code} = s;
+			if(s.Code == 'OK'){
+				res.json({msg: '短信发送成功，请注意查收'});
+			}
+		},function(err){
+			res.json({msg: '短信发送失败'});
+		})
 	}
 }
 

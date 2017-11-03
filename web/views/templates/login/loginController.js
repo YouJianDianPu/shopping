@@ -11,10 +11,10 @@ angular.module('app')
 			}
 
 			utils.tips.showLoadTips();
-
+			console.log('application run to here now');
 			API.fetchPost('/login', $scope.data)
 				.then(function(data){
-					// console.log('login data ==> ', data);
+					console.log('login data ==> ', data);
 					utils.tips.hideLoadTips();
 					showTips(data.data[0].msg);
 					if(data.data[0].code === 200){

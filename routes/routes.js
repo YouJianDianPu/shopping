@@ -42,4 +42,6 @@ module.exports=function(app){
 
 	app.post('/modifypwd', RoutesController.modifynewpwdController);
 
+	app.post('/sendSMS', RoutesController.sendSMSController);
+
 }

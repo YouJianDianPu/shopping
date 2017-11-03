@@ -82,4 +82,17 @@ angular.module('app')
 
 			return true;
 		}
+
+		$scope.getSMSCode = function(){
+			utils.tips.showLoadTips();
+			API.fetchPost('/sendSMS', {PhoneNumbers: '18826079077'})
+				.then(function(data){
+					utils.tips.showTips(data.data.msg, $scope);
+					utils.tips.hideLoadTips();
+				})
+				.catch(function(err){
+					utils.tips.showTips(data.data.msg, $scope);
+					utils.tips.hideLoadTips();					
+				})
+		}
 	}])
